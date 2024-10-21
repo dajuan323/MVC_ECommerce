@@ -21,5 +21,30 @@ namespace EcommerceMvc.Controllers
         {
             return View(await _ingredients.GetByIdAsync(id, new QueryOptions<Ingredient>() { Includes="ProductIngredients.Product"}));
         }
+
+        // Ingredient/Create
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Ingredient, Name")] Ingredient ingredient)
+        {
+            if (ModelState.IsValid)
+            {
+                await _ingredients.AddAsync(ingredient);
+                return RedirectToAction("Index");
+            }
+            return View(ingredient);
+        }
+
+        // Ingredient/Delete
+        public async Task<IActionResult> Delete(int id)
+        {
+            return View(await _ingredients.GetByIdAsync(id, new QueryOptions<Ingredient> { Includes = "ProductIngredients.Product"}));
+        }
     }
 }

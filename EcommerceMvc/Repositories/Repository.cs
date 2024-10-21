@@ -14,9 +14,10 @@ public class Repository<T> : IRepository<T> where T : class
         _context = context;
         _dbSet = context.Set<T>();
     }
-    public Task AddAsync(T entity)
+    public async Task AddAsync(T entity)
     {
-        throw new NotImplementedException();
+        await _dbSet.AddAsync(entity);
+        await _context.SaveChangesAsync();
     }
 
     public Task DeleteById(int id)
