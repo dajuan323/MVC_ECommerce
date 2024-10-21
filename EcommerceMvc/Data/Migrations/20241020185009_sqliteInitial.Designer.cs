@@ -3,6 +3,7 @@ using System;
 using EcommerceMvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerceMvc.data.migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241020185009_sqliteInitial")]
+    partial class sqliteInitial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
@@ -224,9 +227,6 @@ namespace EcommerceMvc.data.migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
@@ -248,7 +248,6 @@ namespace EcommerceMvc.data.migrations
                             ProductId = 1,
                             CategoryId = 2,
                             Description = "Beef taco",
-                            ImageUrl = "https://via.placeholder.com/150",
                             Name = "Taco Asada",
                             Price = 2.50m,
                             Stock = 200
@@ -258,7 +257,6 @@ namespace EcommerceMvc.data.migrations
                             ProductId = 2,
                             CategoryId = 2,
                             Description = "Chicken taco",
-                            ImageUrl = "https://via.placeholder.com/150",
                             Name = "Taco Pollo",
                             Price = 2.00m,
                             Stock = 200
@@ -268,7 +266,6 @@ namespace EcommerceMvc.data.migrations
                             ProductId = 3,
                             CategoryId = 2,
                             Description = "Pork taco",
-                            ImageUrl = "https://via.placeholder.com/150",
                             Name = "Pork Taco",
                             Price = 2.00m,
                             Stock = 200
